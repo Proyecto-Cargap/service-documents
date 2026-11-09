@@ -1,0 +1,286 @@
+{
+  "schema"      : 1,
+  "collections" : {
+    "messaging_v1_outbox"          : [
+      {
+        "key"    : {
+          "namespace"     : 1,
+          "service"       : 1,
+          "publicationId" : 1
+        },
+        "unique" : true
+      },
+      {
+        "key" : {
+          "namespace"   : 1,
+          "service"     : 1,
+          "status"      : 1,
+          "availableAt" : 1,
+          "leaseUntil"  : 1
+        }
+      },
+      {
+        "key"                : {
+          "expiresAt" : 1
+        },
+        "expireAfterSeconds" : 0
+      }
+    ],
+    "messaging_v1_inbox"           : [
+      {
+        "key"    : {
+          "namespace" : 1,
+          "service"   : 1,
+          "handler"   : 1,
+          "messageId" : 1
+        },
+        "unique" : true
+      },
+      {
+        "key" : {
+          "namespace"  : 1,
+          "service"    : 1,
+          "status"     : 1,
+          "leaseUntil" : 1
+        }
+      },
+      {
+        "key"                : {
+          "expiresAt" : 1
+        },
+        "expireAfterSeconds" : 0
+      }
+    ],
+    "messaging_v1_failures"        : [
+      {
+        "key"    : {
+          "namespace" : 1,
+          "service"   : 1,
+          "failureId" : 1
+        },
+        "unique" : true
+      },
+      {
+        "key" : {
+          "namespace" : 1,
+          "service"   : 1,
+          "status"    : 1,
+          "createdAt" : 1
+        }
+      },
+      {
+        "key"                : {
+          "expiresAt" : 1
+        },
+        "expireAfterSeconds" : 0
+      }
+    ],
+    "messaging_v1_failure_chunks"  : [
+      {
+        "key"    : {
+          "namespace" : 1,
+          "service"   : 1,
+          "failureId" : 1,
+          "index"     : 1
+        },
+        "unique" : true
+      }
+    ],
+    "FILES_COUNTER"                : [
+      {
+        "key" : {
+          "workspace"  : 1,
+          "userCreate" : 1
+        }
+      },
+      {
+        "key" : {
+          "workspace"    : 1,
+          "userAssigned" : 1
+        }
+      }
+    ],
+    "DOCUMENTS_ENTRIES"            : [
+      {
+        "key"                     : {
+          "repositoryId" : 1,
+          "parentId"     : 1,
+          "nameKey"      : 1
+        },
+        "unique"                  : true,
+        "name"                    : "documents_entry_live_name",
+        "partialFilterExpression" : {
+          "state" : {
+            "$in" : ["active", "uploading"]
+          }
+        }
+      },
+      {
+        "key"  : {
+          "repositoryId" : 1,
+          "parentId"     : 1,
+          "state"        : 1,
+          "name"         : 1
+        },
+        "name" : "documents_entry_list"
+      },
+      {
+        "key"  : {
+          "state"       : 1,
+          "purgeAfter"  : 1,
+          "trashRootId" : 1
+        },
+        "name" : "documents_entry_trash_expiry"
+      },
+      {
+        "key" : {
+          "workspace"  : 1,
+          "userCreate" : 1
+        }
+      },
+      {
+        "key" : {
+          "workspace"    : 1,
+          "userAssigned" : 1
+        }
+      },
+      {
+        "key"  : {
+          "repositoryId" : 1,
+          "state"        : 1,
+          "_id"          : 1
+        },
+        "name" : "documents_entry_manifest"
+      }
+    ],
+    "DOCUMENTS_FAVORITES"          : [
+      {
+        "key"    : {
+          "userCreate" : 1,
+          "entryId"    : 1
+        },
+        "unique" : true,
+        "name"   : "documents_favorite_actor_entry"
+      },
+      {
+        "key" : {
+          "workspace"  : 1,
+          "userCreate" : 1
+        }
+      },
+      {
+        "key" : {
+          "workspace"    : 1,
+          "userAssigned" : 1
+        }
+      }
+    ],
+    "DOCUMENTS_FILES"              : [
+      {
+        "key"                     : {
+          "storageId" : 1
+        },
+        "unique"                  : true,
+        "partialFilterExpression" : {
+          "storageId" : {
+            "$type" : "string"
+          }
+        }
+      },
+      {
+        "key" : {
+          "workspace"  : 1,
+          "userCreate" : 1
+        }
+      },
+      {
+        "key" : {
+          "workspace"    : 1,
+          "userAssigned" : 1
+        }
+      },
+      {
+        "key" : {
+          "type" : -1
+        }
+      },
+      {
+        "key" : {
+          "storageState" : 1,
+          "cleanupUntil" : 1,
+          "_id"          : 1
+        }
+      }
+    ],
+    "DOCUMENTS_OPERATIONS"         : [
+      {
+        "key"  : {
+          "state"      : 1,
+          "leaseUntil" : 1
+        },
+        "name" : "documents_operation_recovery"
+      },
+      {
+        "key" : {
+          "workspace"  : 1,
+          "userCreate" : 1
+        }
+      },
+      {
+        "key" : {
+          "workspace"    : 1,
+          "userAssigned" : 1
+        }
+      }
+    ],
+    "DOCUMENTS_REPOSITORIES"       : [
+      {
+        "key"    : {
+          "kind"         : 1,
+          "namespaceKey" : 1
+        },
+        "unique" : true,
+        "name"   : "documents_repository_namespace"
+      },
+      {
+        "key" : {
+          "workspace"  : 1,
+          "userCreate" : 1
+        }
+      },
+      {
+        "key" : {
+          "workspace"    : 1,
+          "userAssigned" : 1
+        }
+      }
+    ],
+    "FILES_SETTINGS"               : [
+      {
+        "key" : {
+          "workspace"  : 1,
+          "userCreate" : 1
+        }
+      },
+      {
+        "key" : {
+          "workspace"    : 1,
+          "userAssigned" : 1
+        }
+      },
+      {
+        "key" : {
+          "parameter" : 1
+        }
+      }
+    ],
+    "DOCUMENTS_OPERATION_RECEIPTS" : [
+      {
+        "key"  : {
+          "_id" : 1
+        },
+        "name" : "_id_"
+      }
+    ]
+  }
+}
